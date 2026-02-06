@@ -2,11 +2,12 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Índice de Cursos - Unicesumar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cursos</title>
 
 <style>
 
-/* ===== ANIMAÇÃO DE ENTRADA DO SITE ===== */
 body{
     margin:0;
     height:100vh;
@@ -15,65 +16,43 @@ body{
     justify-content:center;
     background: linear-gradient(135deg,#0b2d5c,#0f4aa1);
     font-family: Arial, Helvetica, sans-serif;
-    animation: entradaSite 0.8s ease;
 }
 
-@keyframes entradaSite{
-    from{
-        opacity:0;
-        transform: scale(0.95);
-    }
-    to{
-        opacity:1;
-        transform: scale(1);
-    }
-}
-
-/* ===== CONTAINER ===== */
 .container{
     text-align:center;
     background: rgba(255,255,255,0.08);
     padding:40px;
     border-radius:20px;
-    box-shadow:0 0 25px rgba(0,0,0,0.4);
     width:90%;
     max-width:500px;
 }
 
-/* ===== LOGO ===== */
 .logo{
-    width:160px;
+    width:150px;
     margin-bottom:20px;
 }
 
-/* ===== INPUT ===== */
 input{
     width:100%;
-    padding:18px;
+    padding:16px;
     font-size:20px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     outline:none;
     text-align:center;
 }
 
-/* ===== RESULTADO ===== */
 #resultado{
     margin-top:25px;
-    font-size:26px;
+    font-size:24px;
     color:#ffffff;
-    min-height:35px;
+    min-height:30px;
 }
 
-/* ===== CRÉDITO ===== */
-.credito{
-    position: fixed;
-    bottom: 6px;
-    right: 10px;
-    font-size: 9px;
-    opacity: 0.25;
-    color: #ffffff;
-    pointer-events: none;
+.footer{
+    margin-top:25px;
+    font-size:9px;
+    color:rgba(255,255,255,0.35);
 }
 
 </style>
@@ -82,16 +61,24 @@ input{
 <body>
 
 <div class="container">
-    <img src="tata.png" class="logo">
-    <input type="text" id="busca" placeholder="Digite o código do curso...">
-    <div id="resultado"></div>
-</div>
 
-<div class="credito">Desenvolvido por Fabricio Benigno</div>
+    <img src="tata.png" class="logo">
+
+    <input 
+        type="text" 
+        id="busca" 
+        placeholder="Digite o código completo do curso">
+
+    <div id="resultado"></div>
+
+    <div class="footer">
+        desenvolvido por Fabricio Benigno
+    </div>
+
+</div>
 
 <script>
 
-/* ===== BASE DE CURSOS ===== */
 const cursos = {
 "ESPRE_TAUT":"Acompanhamento do Transtorno do Espectro Autista",
 "EGRAD_ADM":"Administração",
@@ -106,126 +93,46 @@ const cursos = {
 "ESPRE_BEA":"Bem-Estar Animal",
 "EGRAD_BIB":"Biblioteconomia",
 "ESPRE_BIO":"Biomedicina",
-"EGRAD_CRIA":"Ciência da Criatividade",
-"ESPRE_CFEL":"Ciência da Felicidade",
-"ESPRE_CBIO":"Ciências Biológicas",
 "EGRAD_CCONT":"Ciências Contábeis",
-"EGRAD_CDAC":"Ciências de Dados e Análise de Comportamento",
-"EGRAD_ECO":"Ciências Econômicas",
 "EGRAD_CINA":"Cinema e Audiovisual",
 "EGRAD_COMEX":"Comércio Exterior",
 "EGRAD_CRIM":"Criminologia",
-"EGRAD_TDA":"Design de Animação",
 "EGRAD_DI":"Design de Interiores",
 "EGRAD_DM":"Design de Moda",
 "EGRAD_DP":"Design de Produto",
 "EGRAD_TDG":"Design Gráfico",
-"EGRAD_DMUS":"Design Musical",
-"ESPRE_EESP":"Educação Especial",
-"ESPRE_BEDU":"Educação Física - Bacharelado",
-"ESPRE_EDU":"Educação Física - Licenciatura",
-"EGRAD_EMP":"Empreendedorismo",
-"ESPRE_ENER":"Energias Renováveis",
 "ESPRE_EAMB":"Engenharia Ambiental e Sanitária",
 "ESPRE_ECIV":"Engenharia Civil",
-"ESPRE_EPROD":"Engenharia de Produção",
 "EGRAD_ESOFT":"Engenharia de Software",
-"ESPRE_EELE":"Engenharia Elétrica",
-"ESPRE_EMEC":"Engenharia Mecânica",
-"ESPRE_EMCA":"Engenharia Mecatrônica",
-"ESPRE_ECOS":"Estética e Cosmética",
 "ESPRE_FAR":"Farmácia",
-"ESPRE_FIL":"Filosofia",
 "ESPRE_FISIO":"Fisioterapia",
-"ESPRE_FON":"Fonoaudiologia",
-"EGRAD_FOT":"Fotografia",
 "EGRAD_GAS":"Gastronomia",
-"ESPRE_GEO":"Geografia",
-"ESPRE_GERON":"Gerontologia",
 "EGRAD_GAMB":"Gestão Ambiental",
-"EGRAD_GCOM":"Gestão Comercial",
-"EGRAD_PIND":"Gestão da Produção Industrial",
-"EGRAD_GQ":"Gestão da Qualidade",
-"EGRAD_SPUB":"Gestão da Saúde Pública",
-"EGRAD_TI":"Gestão da Tecnologia da Informação",
-"EGRAD_GC":"Gestão de Cooperativas",
-"EGRAD_ECOM":"Gestão de E-Commerce",
-"EGRAD_GFAR":"Gestão de Farmácia",
-"EGRAD_IMF":"Gestão de Investimentos e Mercado Financeiro",
-"EGRAD_NGIMB":"Gestão de Negócios Imobiliários",
-"EGRAD_GEPIA":"Gestão de Políticas para Infância e Adolescência",
-"EGRAD_PROPSI":"Gestão de Processos Psicossociais",
 "EGRAD_RH":"Gestão de Recursos Humanos",
-"EGRAD_SPRIV":"Gestão de Segurança Privada",
-"EGRAD_NJUR":"Gestão de Serviços Judiciais e Notoriais",
-"EGRAD_NGTUR":"Gestão de Turismo",
 "EGRAD_NAGRO":"Gestão do Agronegócio",
-"EGRAD_GFIN":"Gestão Financeira",
-"EGRAD_GH":"Gestão Hospitalar",
-"EGRAD_GPUB":"Gestão Pública",
-"ESPRE_HIST":"História",
-"EGRAD_IA":"Inteligência Artificial e Machine Learning",
-"EGRAD_IFPC":"Investigação Forense e Perícia Criminal",
-"EGRAD_JOGI":"Jogos Digitais",
-"EGRAD_JOR":"Jornalismo",
-"ESPRE_LET":"Letras - Português / Inglês",
-"ESPRE_DAN":"Licenciatura em Dança",
-"ESPRE_FIS":"Licenciatura em Física",
-"ESPRE_LETL":"Licenciatura em Letras - Libras",
-"ESPRE_MUSIC":"Licenciatura em Música",
-"ESPRE_QUI":"Licenciatura em Química",
-"ESPRE_TEAT":"Licenciatura em Teatro",
-"EGRAD_LOG":"Logística",
-"ESPRE_MIND":"Manutenção Industrial",
-"EGRAD_MKT":"Marketing",
-"ESPRE_MAT":"Matemática",
-"EGRAD_NMDIG":"Mídias Sociais Digitais",
-"EGRAD_CEXP":"Negócios e Customer Experience",
 "ESPRE_NUT":"Nutrição",
 "ESPRE_PED":"Pedagogia",
-"ESPRE_POD":"Podologia",
-"EGRAD_PGER":"Processos Gerenciais",
-"EGRAD_PSIORG":"Psicologia Aplicada às Organizações e Inovação Humana",
-"ESPRE_PSICO":"Psicopedagogia",
 "EGRAD_PPUB":"Publicidade e Propaganda",
 "ESPRE_RAD":"Radiologia",
-"EGRAD_REDES":"Redes de Computadores",
-"EGRAD_RPUB":"Relações Públicas",
 "EGRAD_SECR":"Secretariado",
-"EGRAD_NSEGC":"Segurança Cibernética",
-"EGRAD_NSEG":"Segurança do Trabalho",
-"EGRAD_SEP":"Segurança Pública",
 "EGRAD_SER":"Serviço Social",
 "EGRAD_SISIN":"Sistemas para Internet",
-"ESPRE_SOCIO":"Sociologia",
-"ESPRE_NTALI":"Superior Tecnologia em Tecnologia de Alimentos",
-"EGRAD_TEOL":"Teologia",
-"ESPRE_TOC":"Terapia Ocupacional",
-"ESPRE_TINT":"Terapias Integrativas e Complementares"
+"EGRAD_TEOL":"Teologia"
 };
 
-/* ===== BUSCA ===== */
-const input = document.getElementById("busca");
+const campo = document.getElementById("busca");
 const resultado = document.getElementById("resultado");
 
-input.addEventListener("input", function(){
-    let valor = this.value.toUpperCase().trim();
+campo.addEventListener("input", function(){
 
-    if(valor === ""){
+    const valor = campo.value.toUpperCase().trim();
+
+    if(cursos.hasOwnProperty(valor)){
+        resultado.textContent = cursos[valor];
+    } else {
         resultado.textContent = "";
-        return;
     }
 
-    for(let codigo in cursos){
-        let parteFinal = codigo.split("_")[1];
-
-        if(parteFinal === valor){
-            resultado.textContent = cursos[codigo];
-            return;
-        }
-    }
-
-    resultado.textContent = "";
 });
 
 </script>
