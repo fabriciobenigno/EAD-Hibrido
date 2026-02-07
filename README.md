@@ -1,1 +1,1 @@
-# cursos
+# EAD-Hibrido
